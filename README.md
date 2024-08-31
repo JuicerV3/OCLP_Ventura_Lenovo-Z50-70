@@ -21,7 +21,8 @@ Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate pl
 * Post-Install patch using OpenCore Legacy Patcher 1.5.0
 
 ## Step-By-Step Guide
-* Build OpenCore Ventura installer or use my EFI provided **(Using "MacBook10,1" SMBIOS)**.
+* Build OpenCore Ventura installer or use my EFI provided
+* **(Using "MacBook10,1" SMBIOS | in config.plist [Misc > Security > SecureBootModel set to "Disabled"] and add boot-args: amfi=0x80)**.
 * Download latest OpenCore-Patcher.pkg from [OpenCore-Legacy-Patcher Repository](https://github.com/dortania/OpenCore-Legacy-Patcher) and keep it somewhere safe.
 * Boot into installer you may experience slow graphic caused by low gpu vram. (Fix by OCLP)
 * Once the installation finish. Install **OpenCore-Patcher.pkg** open OpenCore-Patcher app select Post-Install Root Patch and click Start Root Patching.
