@@ -2,6 +2,7 @@
 
 # OCLP 1.5.0 - macOS Ventura 13 - Lenovo Z50-70 Type 80E7
 
+## [!] New version: [[OCLP] Sonoma 14 Lenovo Z5070](https://github.com/JuicerV3/OCLP_Sonoma_Lenovo-Z50-70)
 Keep in mind macOS 13 Ventura is **NOT NATIVELY** supported for Haswell system. this modification may cause bug glitches to an operating system.
 
 ```
