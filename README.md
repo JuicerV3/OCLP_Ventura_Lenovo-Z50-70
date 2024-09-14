@@ -1,8 +1,8 @@
 ![Screenshot 2567-08-31 at 09 53 23](https://github.com/user-attachments/assets/3057dadd-a696-4382-bf8b-9e586719a05c)
 
-# OCLP 1.5.0 - macOS Ventura 13.6.9 - Lenovo Z50-70 Type 80E7 59422137
+# OCLP 1.5.0 - macOS Ventura 13 - Lenovo Z50-70 Type 80E7
 
-macOS 13 Ventura is **NOT** supported **NATIVELY** for Haswell system (2013 Intel 4th-gen core cpu) if you want **STABLE** os to use please head to my other repository [OpenCore Lenovo Z50-70](https://github.com/JuicerV3/Opencore-Monterey-Z50-70).
+Keep in mind macOS 13 Ventura is **NOT NATIVELY** supported for Haswell system. this modification may cause bug glitches to an operating system.
 
 ```
 * I am not responsible for any damage done to your device. Use at your own risk.
@@ -11,10 +11,21 @@ macOS 13 Ventura is **NOT** supported **NATIVELY** for Haswell system (2013 Inte
 * if any thing goes wrong, it is your responsible for the damage that happen next.
 ```
 
-* I will continue to update this EFI _periodically_ as long as im using it. This repo will be archived if im no longer using this OS.
+## Important note
+### [!] Don't forget to update your kexts to Ventura specific version if avaliable.
 
-### **Note:** You need to generate your own SMBIOS to signin an Apple ID
-Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate platforminfo using **MacBook10,1** as an SMBIOS for Ventura. Head to [Dortania's haswell platforminfo guide](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/haswell.html#platforminfo) for in-depth guide.
+### From now you need to generate your own SMBIOS to signin with Apple ID
+Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate platforminfo using **MacBook10,1** as an SMBIOS for Monterey. Head to [Dortania's haswell platforminfo guide](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/haswell.html#platforminfo) for in-depth guide.
+
+### Wlan Related kext
+If you have difference **Wlan card** other than Intel ([OpenIntelWireless](https://openintelwireless.github.io/) kexts were used for both WiFi and Bluetooth)
+#### **removes/excludes:**
+* AirportItlwm.kext
+* BlueToolFixup.kext
+* IntelBTPatcher.kext
+* IntelBluetoothFirmware.kext
+
+from **EFI/OC/Kexts** folder and **config.plist** then replace with one that work for your card.
 
 ## latest changes (31 Aug)
 * Initial release based on OpenCore 1.0.1
@@ -22,20 +33,25 @@ Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate pl
 
 ## Step-By-Step Guide
 * Build OpenCore Ventura installer or use my EFI provided
-* **(Using "MacBook10,1" SMBIOS | in config.plist [Misc > Security > SecureBootModel set to "Disabled"] and add boot-args: amfi=0x80)**.
-* Download latest OpenCore-Patcher.pkg from [OpenCore-Legacy-Patcher Repository](https://github.com/dortania/OpenCore-Legacy-Patcher) and keep it somewhere safe.
-* Boot into installer you may experience slow graphic caused by low gpu vram. (Fix by OCLP)
+* Generate SMBIOS using "MacBook10,1"
+* in config.plist
+  * Misc > Security > SecureBootModel: set to "Disabled"
+  * boot-args: amfi=0x80)**.
+* Download latest OpenCore-Patcher.pkg from [OpenCore-Legacy-Patcher Repository](https://github.com/dortania/OpenCore-Legacy-Patcher) copy to usb installer or your prefered storage.
+* Boot into installer you may experience slow graphic caused incompatible gpu (low gpu vram. patch with OCLP)
 * Once the installation finish. Install **OpenCore-Patcher.pkg** open OpenCore-Patcher app select Post-Install Root Patch and click Start Root Patching.
-* Restart and it should be working fine
+* Restart
 
-### Known issues (Update 31 Aug)
-* Most issues come from OpenCore itself see [OpenCore Lenovo Z50-70](https://github.com/JuicerV3/Opencore-Monterey-Z50-70).
+## Known issues (Update 31 Aug)
+Most(every?) issues come from OpenCore itself see [Hackintosh_OpenCore_Lenovo-Z50-70#known-issues](https://github.com/JuicerV3/Hackintosh_OpenCore_Lenovo-Z50-70#known-issues).
 * Unable to grant special permissions to apps (ie. Camera Access to Zoom, Discord Microphone) [Workaround click here](https://dortania.github.io/OpenCore-Legacy-Patcher/ACCEL.html#unable-to-grant-special-permissions-to-apps-ie-camera-access-to-zoom)
 * [Legacy Metal Graphics issues](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1008)
+* GeForce Now app crashing due to Metal acceleration problem.
 
 ### What works (Update 31 Aug)
-* WiFi & Bluetooth
-* Ethernet
+* Partial Metal GPU Acceleration
+* WiFi & Bluetooth connection
+* Ethernet connection
 * Onboard Audio & Microphone
 * Display Brightness Control
 * Webcam
@@ -43,11 +59,18 @@ Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate pl
 * Battery read-out (Battery percentage)
 * Keyboard & Trackpad
 * Volume keys
-* Sleep & Wake (Need more testing to confirm)
+* Sleep & Wake (Set "Graphic Device: UMA Only" in bios)
 
-More info on my [OpenCore Lenovo Z50-70](https://github.com/JuicerV3/Opencore-Monterey-Z50-70) Repository
+### What not works
+* lid wake & sleep
+* Airdrop & Continuity Features (Need native wificard & [Bios whitelist removal](https://www.tonymacx86.com/threads/guide-lenovo-g50-70-and-z50-70-bios-whitelist-removal.187340/))
+* Brightness control keys (From built-in keyboard)
+* Build-in Windows control keys: Close window, Refresh, Airplane mode, Task switch, Display toggle (Some can be remapped idk)
+
+More info [Hackintosh_OpenCore_Lenovo-Z50-70](https://github.com/JuicerV3/Hackintosh_OpenCore_Lenovo-Z50-70)
 
 ## Links/Guides
+* https://github.com/JuicerV3/Hackintosh_OpenCore_Lenovo-Z50-70 (Native OpenCore Monterey repository)
 * https://github.com/dortania/OpenCore-Legacy-Patcher (OCLP)
 * https://openintelwireless.github.io/itlwm/ (Native Intel WiFi)
 * https://openintelwireless.github.io/IntelBluetoothFirmware/ (Native Intel Bluetooth)
