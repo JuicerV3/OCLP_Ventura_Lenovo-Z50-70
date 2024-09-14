@@ -15,7 +15,7 @@ Keep in mind macOS 13 Ventura is **NOT NATIVELY** supported for Haswell system. 
 ### [!] Don't forget to update your kexts to Ventura specific version if avaliable.
 
 ### From now you need to generate your own SMBIOS to signin with Apple ID
-Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate platforminfo using **MacBook10,1** as an SMBIOS for Monterey. Head to [Dortania's haswell platforminfo guide](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/haswell.html#platforminfo) for in-depth guide.
+Use CorpNewt's [GENSMBIOS](https://github.com/corpnewt/GenSMBIOS) to generate platforminfo using **MacBook10,1** as an SMBIOS for Ventura. Head to [Dortania's haswell platforminfo guide](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/haswell.html#platforminfo) for in-depth guide.
 
 ### Wlan Related kext
 If you have difference **Wlan card** other than Intel ([OpenIntelWireless](https://openintelwireless.github.io/) kexts were used for both WiFi and Bluetooth)
@@ -33,7 +33,7 @@ from **EFI/OC/Kexts** folder and **config.plist** then replace with one that wor
 
 ## Step-By-Step Guide
 * Build OpenCore Ventura installer or use my EFI provided
-* Generate SMBIOS using "MacBook10,1"
+* Generate SMBIOS using **MacBook10,1**
 * in config.plist
   * Misc > Security > SecureBootModel: set to "Disabled"
   * boot-args: amfi=0x80)**.
@@ -42,13 +42,14 @@ from **EFI/OC/Kexts** folder and **config.plist** then replace with one that wor
 * Once the installation finish. Install **OpenCore-Patcher.pkg** open OpenCore-Patcher app select Post-Install Root Patch and click Start Root Patching.
 * Restart
 
-## Known issues (Update 31 Aug)
+## Known issues (Update 14 September)
 Most(every?) issues come from OpenCore itself see [Hackintosh_OpenCore_Lenovo-Z50-70#known-issues](https://github.com/JuicerV3/Hackintosh_OpenCore_Lenovo-Z50-70#known-issues).
 * Unable to grant special permissions to apps (ie. Camera Access to Zoom, Discord Microphone) [Workaround click here](https://dortania.github.io/OpenCore-Legacy-Patcher/ACCEL.html#unable-to-grant-special-permissions-to-apps-ie-camera-access-to-zoom)
 * [Legacy Metal Graphics issues](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1008)
 * GeForce Now app crashing due to Metal acceleration problem.
 
-### What works (Update 31 Aug)
+### What works (Update 14 September)
+Most things is handle by OpenCore we only use OCLP for GPU Acceleration
 * Partial Metal GPU Acceleration
 * WiFi & Bluetooth connection
 * Ethernet connection
